@@ -1,0 +1,40 @@
+<div class="col-12" style="background: white;">
+    <div class="offset-1">
+        <div class="row" >
+            <img src="assets/Back.svg" alt="next" (click)="back()" />
+            <h2>{{category}}</h2>
+        </div>
+        <div class="col-10 pb-2">
+
+            <div class="form-group has-search">
+                <span class="fa fa-search form-control-feedback"></span>
+                <input type="text" class="form-control" placeholder="Search"
+                [(ngModel)]="searchText"
+                (ngModelChange)="searchTextSubject$.next($event)"
+                />
+                
+              </div>
+        </div>
+    </div>
+
+    
+</div>
+<div class="col-10 offset-1 row search-results"
+infiniteScroll
+[infiniteScrollDistance]="2"
+[infiniteScrollThrottle]="1000"
+(scrolled)="onScroll()"
+>
+    <div *ngFor="let book of books" class="book-card-container" (click)="openBook(book)">
+        <img [src]="book.formats['image/jpeg']" class="book-card" />
+        <div>
+            <span class="book-name">{{book.title | uppercase | trim: 25}}</span>
+        <p class="book-author">{{book.authors[0]?.name}}</p>
+        </div>
+    </div>
+</div>
+<div>
+<ngx-spinner>
+    <p style="color: white;">Loading Books...</p>
+</ngx-spinner>
+</div>
