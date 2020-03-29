@@ -10,6 +10,6 @@ export class AppComponent {
   title = 'Gutendex';
 
   constructor(private translate: TranslateService) {
-    translate.setDefaultLang('gr');
+    translate.setDefaultLang('en');
   }
 }
